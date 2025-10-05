@@ -1,0 +1,17 @@
+skip_clone: true
+
+when:
+  - event: pull_request
+  - event: push
+    branch: renovate/*
+
+steps:
+  - name: renovate
+    image: docker.io/renovate/renovate@sha256:04931b21787bb211161261a27f12069c342705ef4e03481c6d8189675e76a027
+    commands: [renovate]
+    environment:
+      RENOVATE_GIT_AUTHOR: Renovate Bot <renovate@roboteamtwente.nl>
+      RENOVATE_PLATFORM: github
+
+      LOG_LEVEL: debug
+      RENOVATE_DRY_RUN: "true"
