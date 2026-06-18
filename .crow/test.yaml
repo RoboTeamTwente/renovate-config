@@ -7,7 +7,7 @@ steps:
   - name: generate-github-token
     image: docker.io/alpine
     commands:
-      - apk add github-cli jo openssl
+      - apk add jo jq openssl
       - '( echo -n RENOVATE_TOKEN=; ./generate-app-token.sh; ) > envvars'
     environment:
       SCOPE: orgs/RoboTeamTwente
