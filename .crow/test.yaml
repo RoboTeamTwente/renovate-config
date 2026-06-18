@@ -8,7 +8,7 @@ steps:
     image: docker.io/alpine
     commands:
       - apk add curl jo jq openssl
-      - '( echo -n export RENOVATE_TOKEN=; ./generate-app-token.sh; ) > envvars'
+      - echo "export RENOVATE_TOKEN=$(./generate-app-token.sh)" > envvars
     environment:
       SCOPE: orgs/RoboTeamTwente
       CLIENT_ID: { from_secret: github-client-id }
@@ -20,8 +20,6 @@ steps:
     environment:
       RENOVATE_AUTODISCOVER: 'true'
       RENOVATE_GIT_AUTHOR: Renovate Bot <renovate@roboteamtwente.nl>
-      RENOVATE_ONBOARDING: 'false'
-      RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
       RENOVATE_PLATFORM_COMMIT: 'true'
 
       LOG_LEVEL: debug
