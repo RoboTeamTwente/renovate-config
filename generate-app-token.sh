@@ -4,8 +4,9 @@ encode_jwt_part() {
   openssl base64 | tr +/ -_ | tr -d '=\n'
 }
 
-issued_at=$(date +%s -d '1 minute ago')
-expire_at=$(date +%s -d '5 minutes')
+now=$(date +%s)
+issued_at=$(( now - 60 ))
+expire_at=$(( now + 600 ))
 
 printf >&2 'Issued at: %s\nExpire at: %s\n' "$issued_at" "$expire_at"
 
