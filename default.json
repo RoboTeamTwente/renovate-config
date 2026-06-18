@@ -1,10 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:best-practices"],
+  "extends": [
+    "config:best-practices"
+  ],
   "automerge": true,
   "automergeType": "branch",
   "major": {
     "automerge": false
   },
-  "nix": { "enabled": true }
+  "nix": {
+    "enabled": true
+  }
 }
