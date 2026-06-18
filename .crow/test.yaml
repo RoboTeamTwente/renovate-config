@@ -11,7 +11,6 @@ steps:
     commands: [renovate]
     environment:
       RENOVATE_AUTODISCOVER: 'true'
-      RENOVATE_GITHUB_COM_TOKEN: { from_secret: github-token }
       RENOVATE_GIT_AUTHOR: Renovate Bot <renovate@roboteamtwente.nl>
       RENOVATE_ONBOARDING: 'false'
       RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
