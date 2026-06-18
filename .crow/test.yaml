@@ -4,6 +4,7 @@ when:
   - event: pull_request
   - event: push
     branch: renovate/*
+  - event: manual
 
 steps:
   - name: renovate
