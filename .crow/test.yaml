@@ -5,10 +5,9 @@ when:
 
 steps:
   - name: generate-github-token
-    image: docker.io/debian:stable-slim
+    image: docker.io/alpine
     commands:
-      - apt-get update
-      - apt-get install -y jo openssl
+      - apk add github-cli jo openssl
       - '( echo -n RENOVATE_TOKEN=; ./generate-app-token.sh; ) > envvars'
     environment:
       SCOPE: orgs/RoboTeamTwente
