@@ -6,16 +6,22 @@ when:
     branch: renovate/*
 
 steps:
+  - name: generate-github-token
+    commands: [sh, -cx, '( echo -n RENOVATE_TOKEN=; ./generate-app-token.sh; ) > envvars']
+    environment:
+      SCOPE: orgs/RoboTeamTwente
+      CLIENT_ID: { from_secret: github-client-id }
+      PRIVATE_KEY: { from_secret: github-private-key }
+
   - name: renovate
     image: docker.io/renovate/renovate@sha256:04931b21787bb211161261a27f12069c342705ef4e03481c6d8189675e76a027
-    commands: [renovate]
+    commands: [sh, -cx, 'source envvars && renovate']
     environment:
       RENOVATE_AUTODISCOVER: 'true'
       RENOVATE_GIT_AUTHOR: Renovate Bot <renovate@roboteamtwente.nl>
       RENOVATE_ONBOARDING: 'false'
       RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
       RENOVATE_PLATFORM_COMMIT: 'true'
-      RENOVATE_TOKEN: { from_secret: github-token }
 
       LOG_LEVEL: debug
       RENOVATE_DRY_RUN: "true"
