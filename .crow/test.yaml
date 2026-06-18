@@ -6,7 +6,10 @@ when:
 steps:
   - name: generate-github-token
     image: docker.io/debian:stable-slim
-    commands: ['( echo -n RENOVATE_TOKEN=; ./generate-app-token.sh; ) > envvars']
+    commands:
+      - apt-get update
+      - apt-get install -y jo openssl
+      - '( echo -n RENOVATE_TOKEN=; ./generate-app-token.sh; ) > envvars'
     environment:
       SCOPE: orgs/RoboTeamTwente
       CLIENT_ID: { from_secret: github-client-id }
