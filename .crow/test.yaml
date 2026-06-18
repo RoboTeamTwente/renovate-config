@@ -8,7 +8,7 @@ when:
 steps:
   - name: generate-github-token
     image: docker.io/debian:stable-slim
-    commands: [sh, -xc, '( echo -n RENOVATE_TOKEN=; ./generate-app-token.sh; ) > envvars', 'sh']
+    commands: ['( echo -n RENOVATE_TOKEN=; ./generate-app-token.sh; ) > envvars']
     environment:
       SCOPE: orgs/RoboTeamTwente
       CLIENT_ID: { from_secret: github-client-id }
@@ -16,7 +16,7 @@ steps:
 
   - name: renovate
     image: docker.io/renovate/renovate@sha256:04931b21787bb211161261a27f12069c342705ef4e03481c6d8189675e76a027
-    commands: [sh, -xc, 'source envvars && renovate', 'sh']
+    commands: ['source envvars && renovate']
     environment:
       RENOVATE_AUTODISCOVER: 'true'
       RENOVATE_GIT_AUTHOR: Renovate Bot <renovate@roboteamtwente.nl>
