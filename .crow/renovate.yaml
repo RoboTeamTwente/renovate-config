@@ -15,7 +15,7 @@ steps:
       PRIVATE_KEY: { from_secret: github-private-key }
 
   - name: renovate
-    image: docker.io/renovate/renovate@sha256:04931b21787bb211161261a27f12069c342705ef4e03481c6d8189675e76a027
+    image: docker.io/renovate/renovate@sha256:6a5475cd62046abc541ebb50b19b2b737ee52cc17153ab5700027afa51186394
     commands: ['. ./envvars && renovate']
     environment:
       RENOVATE_AUTODISCOVER: 'true'
